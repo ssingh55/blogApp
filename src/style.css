@@ -1,0 +1,26 @@
+body {
+    
+}
+
+.error{
+    color: red;
+    text-align: center;
+}
+
+a:active{
+    color: orange;
+}
+
+.addblog{
+    text-align: center;
+}
+.addblog button{
+    background-color: white;
+    padding: 10px;
+    font-size: 15px;
+}
+
+textarea{
+    margin: 10px auto;
+    min-height: 100px;
+}
