@@ -6,6 +6,7 @@ import BlogDetails from "./components/BlogDetails";
 import ListBlog from "./components/ListBlog";
 import Error from "./components/Error";
 import Navigation from "./components/Navigation";
+import Blog from "./components/Blog";
 
 class App extends Component {
   render() {
@@ -15,8 +16,10 @@ class App extends Component {
             <Navigation />
             <Switch>
               <Route path="/" component={AddBlog} exact />
-              <Route path="/blogdetails" component={BlogDetails} />
+              <Route path="/allblogs/:id" component={AddBlog} exact />
+              <Route path="/listblog/:id" component={BlogDetails} />
               <Route path="/listblog" component={ListBlog} />
+              <Route path="/allblogs" component={Blog} />
               <Route component={Error} />
             </Switch>
         </div>

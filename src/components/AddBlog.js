@@ -15,7 +15,22 @@ class AddBlog extends React.Component {
         this.addblog = this.addblog.bind(this);
     }
 
-    updateBlog(field, event) {
+    componentDidMount(){
+        // console.log(this.props.match.params.id)
+        // console.log(this.props.blog)
+        if(this.props.match.params.id!==undefined)
+            {
+                console.log('inside')
+                let nextBlog = {};
+                nextBlog.title = this.props.blog[0].title;
+                nextBlog.description = this.props.blog[0].description;
+                this.setState({
+                    nextBlog
+                })
+            }
+    }
+
+    updateBlogState(field, event) {
         let nextBlog = Object.assign({}, this.state.nextBlog);
         nextBlog[field] = event.target.value;
 
@@ -26,20 +41,27 @@ class AddBlog extends React.Component {
 
     //addBlog
     addblog(event) {
-        // console.log(event.target.parentNode.children[1].value);
-        // console.log(event.target.parentNode.children[3].value);
-        console.log('ADD blog', this.state.nextBlog)
-        this.props.createBlogItem(this.state.nextBlog)
+        // console.log('ADD blog', this.state.nextBlog)
+        if (this.state.nextBlog.title !== '' && this.state.nextBlog.description !== '')
+            this.props.createBlogItem(this.state.nextBlog);
+
+        //empty the text boxes using state
+        let nextBlog = {};
+        nextBlog.title = '';
+        nextBlog.description = '';
+        this.setState({
+            nextBlog: nextBlog
+        })
     }
 
     render() {
         return (
             <div className="addblog">
                 <h1>Create blog</h1>
-                <input type="text" placeholder="Enter title" value={this.state.nextBlog.title} onChange={this.updateBlog.bind(this, 'title')} />
+                <input type="text" placeholder="Enter title" value={this.state.nextBlog.title} onChange={this.updateBlogState.bind(this, 'title')} />
                 <br />
                 {/* <p>Enter the blog description</p> */}
-                <textarea placeholder="Enter description" value={this.state.nextBlog.description} onChange={this.updateBlog.bind(this, 'description')}></textarea>
+                <textarea placeholder="Enter description" value={this.state.nextBlog.description} onChange={this.updateBlogState.bind(this, 'description')}></textarea>
                 <br />
                 <button onClick={this.addblog}>Add Blog</button>
             </div>

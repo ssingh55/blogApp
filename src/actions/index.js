@@ -5,5 +5,11 @@ export default
                 type: 'ADD_BLOG',
                 data: blog
             }
+        },
+        editBlogItem: (blog) => {
+            return {
+                type: 'EDIT_BLOG',
+                data: blog
+            }
         }
     }

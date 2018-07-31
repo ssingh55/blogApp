@@ -6,7 +6,7 @@ const Navigation = () => {
         <div>
             <NavLink to="/">CreateBlog</NavLink>
             {' | '}
-            <NavLink to="/blogdetails">DisplayBlog</NavLink>
+            <NavLink to="/allblogs">DisplayBlog</NavLink>
             {' | '}
             <NavLink to="/listblog">ListBlog</NavLink>
         </div>
