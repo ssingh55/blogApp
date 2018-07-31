@@ -1,16 +1,18 @@
 const initialState = {
-    title: '',
-    message: ''
+    blog: [{
+        title: '',
+        description: ''
+    }]
 }
 
-export default function courseReducer(state = initialState, action) {
-  switch(action.type) {
-    case 'ADD_BLOG':
-      // state.concat(action.course);
-      // return state;
-      return [...state,Object.assign({},action.title,action.message)];
+export default function blogReducer(state = initialState, action) {
+    switch (action.type) {
+        case 'ADD_BLOG':
+            console.log('create blog',action.data);
+            return [...state, Object.assign({}, action.data)];
 
-    default:
-      return state;
-  }
+
+        default:
+            return state;
+    }
 }
