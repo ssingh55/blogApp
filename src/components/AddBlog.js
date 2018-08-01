@@ -15,19 +15,22 @@ class AddBlog extends React.Component {
         this.addblog = this.addblog.bind(this);
     }
 
-    componentDidMount(){
+    componentDidMount() {
         // console.log(this.props.match.params.id)
         // console.log(this.props.blog)
-        if(this.props.match.params.id!==undefined)
-            {
-                console.log('inside')
-                let nextBlog = {};
-                nextBlog.title = this.props.blog[0].title;
-                nextBlog.description = this.props.blog[0].description;
-                this.setState({
-                    nextBlog
-                })
-            }
+        if (this.props.match.params.id !== undefined) {
+            console.log('inside')
+            this.props.blog.map((item) => {
+                if (item._id == this.props.match.params.id) {
+                    let nextBlog = {};
+                    nextBlog.title = item.title;
+                    nextBlog.description = item.description;
+                    this.setState({
+                        nextBlog
+                    })
+                }
+            })
+        }
     }
 
     updateBlogState(field, event) {

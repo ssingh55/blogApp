@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const blogSchema = new Schema({
-    text: {
+    title: {
         type: String,
-        required: [true,'text Field is required']
+        // required: [true,'text Field is required']
     },
     _id: {
         type: Number

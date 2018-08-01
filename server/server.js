@@ -6,20 +6,20 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const blogModule = require('../module/blogModule');
 
-app.use(express.static(path.resolve('../src')));
 // app.use(express.static(path.resolve('./dist')));
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json());
 mongoose.connect('mongodb://localhost:27017/blogdb', { useNewUrlParser: true });
 mongoose.Promise = global.Promise;
 
+app.use(express.static(path.resolve("../build")))
+// app.use(express.static("static"))
 //send the index file
+app.use(express.static(path.resolve("../build/static")))
 
 app.get('/', (req, res) => {
-    res.sendFile(path.resolve('../../public/index.html'));
+    res.sendFile(path.resolve('../build/index.html'));
 })
-
-
 
 //get the data
 app.get('/api/blogs', (req, res) => {
