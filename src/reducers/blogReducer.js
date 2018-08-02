@@ -24,10 +24,9 @@ export default function blogReducer(state = initialState, action) {
             blog[index].description = action.payload.description;
             return { ...state, blog: [blog] }
         case NEW_BLOG:
-            // console.log('create blog',action.data);
+            console.log('create blog', action.data);
             return {
-
-                blog: [...state.blog, Object.assign({}, action.data, { _id: Date.now() })]
+                blog: [...state.blog, Object.assign({}, action.data)]
             }
         //     else{
         //         ...state,

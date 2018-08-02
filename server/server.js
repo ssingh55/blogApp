@@ -12,13 +12,13 @@ app.use(bodyParser.json());
 mongoose.connect('mongodb://localhost:27017/blogdb', { useNewUrlParser: true });
 mongoose.Promise = global.Promise;
 
-app.use(express.static(path.resolve("../build")))
+app.use(express.static(path.resolve("./build")))
 // app.use(express.static("static"))
 //send the index file
-app.use(express.static(path.resolve("../build/static")))
+app.use(express.static(path.resolve("./build/static")))
 
 app.get('/', (req, res) => {
-    res.sendFile(path.resolve('../build/index.html'));
+    res.sendFile(path.resolve('./build/index.html'));
 })
 
 //get the data
@@ -29,10 +29,13 @@ app.get('/api/blogs', (req, res) => {
 })
 
 //add a new data
-app.post('/api/blogs', async (req, res) => {
-    var bodyData = await req.body;
-    blogModule.create(bodyData).then(function (data) {
-        res.send(data);
+app.post('/api/blogs', (req, res) => {
+    var bodyData = req.body.data;
+    console.log(bodyData)
+    // res.send(req.body)
+    blogModule.create(bodyData).then(function (err, data) {
+        if (err) {console.log(err)}
+        console.log(data)
     });
 });
 

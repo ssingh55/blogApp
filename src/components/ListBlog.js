@@ -6,10 +6,12 @@ import { bindActionCreators } from 'redux';
 
 class ListBlog extends React.Component {
     componentWillMount() {
-        this.props.actions.fetchPosts();
+        this.props.actions.fetchBlogs();
     }
-    deletePost(id) {
-        this.props.actions.deletePost(id)
+    deleteBlog = id => {
+        console.log(this);
+        console.log(id);
+        this.props.actions.deleteBlog(id)
     }
 
     render() {
@@ -25,7 +27,7 @@ class ListBlog extends React.Component {
                                 <Link to={`/editblog/${item._id}`}>
                                     <button>Edit Blog</button>
                                 </Link>
-                                <button onClick={() => this.deleteBlog}>Delete</button>
+                                <button onClick={this.deleteBlog(item._id)}>Delete</button>
                             </li>
                         )
                     })}

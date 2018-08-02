@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
-// import { bindActionCreators } from 'redux';
-import actions from '../actions/index';
+import { bindActionCreators } from 'redux';
+import * as addBlog from '../actions/blogActions';
 
 class AddBlog extends React.Component {
     constructor() {
@@ -12,7 +12,7 @@ class AddBlog extends React.Component {
                 description: ''
             }
         }
-        this.addblog = this.addblog.bind(this);
+        // this.addblog = this.addblog.bind(this);
     }
 
     componentDidMount() {
@@ -42,19 +42,25 @@ class AddBlog extends React.Component {
         })
     }
 
-    //addBlog
-    addblog(event) {
-        // console.log('ADD blog', this.state.nextBlog)
-        if (this.state.nextBlog.title !== '' && this.state.nextBlog.description !== '')
-            this.props.createBlogItem(this.state.nextBlog);
+    // //addBlog
+    // addBlog(event) {
+    //     // console.log('ADD blog', this.state.nextBlog)
+    //     if (this.state.nextBlog.title !== '' && this.state.nextBlog.description !== '')
+    //         this.props.createBlogItem(this.state.nextBlog);
 
-        //empty the text boxes using state
-        let nextBlog = {};
-        nextBlog.title = '';
-        nextBlog.description = '';
-        this.setState({
-            nextBlog: nextBlog
-        })
+    //     //empty the text boxes using state
+    //     let nextBlog = {};
+    //     nextBlog.title = '';
+    //     nextBlog.description = '';
+    //     this.setState({
+    //         nextBlog: nextBlog
+    //     })
+    // }
+
+    blogInput = (data) => {
+        console.log(data);
+        data._id = Date.now();
+        this.props.actions.blogInput(data);
     }
 
     render() {
@@ -66,7 +72,7 @@ class AddBlog extends React.Component {
                 {/* <p>Enter the blog description</p> */}
                 <textarea placeholder="Enter description" value={this.state.nextBlog.description} onChange={this.updateBlogState.bind(this, 'description')}></textarea>
                 <br />
-                <button onClick={this.addblog}>Add Blog</button>
+                <button onClick={() => this.blogInput(this.state.nextBlog)}>Add Blog</button>
             </div>
         )
     }
@@ -78,10 +84,15 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
     return {
-        createBlogItem: (blog) => dispatch(actions.createBlogItem(blog))
+        actions: bindActionCreators(addBlog, dispatch)
     }
 }
+// const mapDispatchToProps = (dispatch) => {
+//     return {
+//         createBlogItem: (blog) => dispatch(actions.createBlogItem(blog))
+//     }
+// }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddBlog);

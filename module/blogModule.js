@@ -6,9 +6,8 @@ const blogSchema = new Schema({
         type: String,
         // required: [true,'text Field is required']
     },
-    _id: {
-        type: Number
-    },
+    _id: Number
+    ,
     description: {
         type: String
     }
