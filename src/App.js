@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+// import EditBlog from './components/EditBlog';
 import AddBlog from "./components/AddBlog";
 import BlogDetails from "./components/BlogDetails";
 import ListBlog from "./components/ListBlog";
@@ -36,7 +37,8 @@ class App extends Component {
           <Navigation />
           <Switch>
             <Route path="/" component={AddBlog} exact />
-            <Route path="/allblogs/:id" component={AddBlog} exact />
+            {/* <Route path="/allblogs/:id" component={AddBlog} exact /> */}
+            {/* <Route path="/editblog/:id" component={EditBlog} /> */}
             <Route path="/listblog/:id" component={BlogDetails} />
             <Route path="/listblog" component={ListBlog} />
             <Route path="/allblogs" component={Blog} />

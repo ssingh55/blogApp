@@ -1,8 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import * as addAction from '../actions/blogActions';
+import { bindActionCreators } from 'redux';
 
 class ListBlog extends React.Component {
+    componentWillMount() {
+        this.props.actions.fetchPosts();
+    }
+    deletePost(id) {
+        this.props.actions.deletePost(id)
+    }
+
     render() {
         return (
             <div>
@@ -13,10 +22,10 @@ class ListBlog extends React.Component {
                                 <Link to={this.props.match.url + '/' + item._id}>
                                     {item.title}
                                 </Link>
-                                <Link to={`/allblogs/${item._id}`}>
-                                    <button>Edit</button>
+                                <Link to={`/editblog/${item._id}`}>
+                                    <button>Edit Blog</button>
                                 </Link>
-                                <button onClick={this.deleteItem}>Delete</button>
+                                <button onClick={() => this.deleteBlog}>Delete</button>
                             </li>
                         )
                     })}
@@ -32,4 +41,11 @@ const mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps)(ListBlog);
+const mapDispatchToProps = dispatch => {
+    return {
+        actions: bindActionCreators(addAction, dispatch)
+    }
+}
+
+
+export default connect(mapStateToProps,mapDispatchToProps)(ListBlog);
