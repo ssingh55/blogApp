@@ -20,6 +20,7 @@ export const blogInput = (blogData) => dispatch => {
         data: blogData,
         config: { headers: { 'Content-Type': 'multipart/form-data' } }
     }).then(myJson => {
+        console.log("blog23", myJson)
         dispatch({
             type: NEW_BLOG,
             data: myJson.data

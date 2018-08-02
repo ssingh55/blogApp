@@ -33,9 +33,9 @@ app.post('/api/blogs', (req, res) => {
     var bodyData = req.body.data;
     console.log(bodyData)
     // res.send(req.body)
-    blogModule.create(bodyData).then(function (err, data) {
-        if (err) {console.log(err)}
-        console.log(data)
+    blogModule.create(bodyData).then(function (data) {
+        // if (err) {console.log(err)}
+        res.send(data)
     });
 });
 
