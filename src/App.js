@@ -38,6 +38,7 @@ class App extends Component {
           <Switch>
             <Route path="/" component={AddBlog} exact />
             {/* <Route path="/allblogs/:id" component={AddBlog} exact /> */}
+            <Route path="/editblog/:id" component={AddBlog} />
             {/* <Route path="/editblog/:id" component={EditBlog} /> */}
             <Route path="/listblog/:id" component={BlogDetails} />
             <Route path="/listblog" component={ListBlog} />

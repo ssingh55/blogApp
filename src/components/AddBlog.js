@@ -26,7 +26,8 @@ class AddBlog extends React.Component {
                     nextBlog.title = item.title;
                     nextBlog.description = item.description;
                     this.setState({
-                        nextBlog
+                        nextBlog,
+                        id: this.props.match.params.id
                     })
                 }
             })
@@ -59,8 +60,14 @@ class AddBlog extends React.Component {
 
     blogInput = (data) => {
         console.log(data);
-        data._id = Date.now();
-        this.props.actions.blogInput(data);
+        if (!this.state.id) {
+            console.log("not id")
+            data._id = Date.now();
+            this.props.actions.blogInput(data);
+        } else {
+            data._id = this.state.id
+            this.props.action.updateBlog(data._id, data);
+        }
     }
 
     render() {
