@@ -34,8 +34,7 @@ export default function blogReducer(state = initialState, action) {
         //     }
         // }
         case DELETE_BLOG:
-            console.log(state.blog)
-            const remainblog = state.blog.filter((post) => post._id !== action.payload)
+            const remainblog = state.blog.filter((post) => post._id !== action.data._id)
             return { ...state, blog: [remainblog] }
 
         case SINGLE_BLOG: {

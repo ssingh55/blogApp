@@ -47,7 +47,7 @@ export const updateBlog = (id, blogData) => dispatch => {
 
 // delete blog
 export const deleteBlog = (id) => dispatch => {
-    console.log('hi')
+    console.log('delete')
     axios.delete(`/api/blogs/` + id)
         .then(myJson => {
             dispatch({

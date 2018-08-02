@@ -27,7 +27,7 @@ class ListBlog extends React.Component {
                                 <Link to={`/editblog/${item._id}`}>
                                     <button>Edit Blog</button>
                                 </Link>
-                                <button onClick={this.deleteBlog(item._id)}>Delete</button>
+                                <button onClick={()=>this.deleteBlog(item._id)}>Delete</button>
                             </li>
                         )
                     })}
