@@ -1,4 +1,4 @@
-import {UPDATE_BLOG, SINGLE_BLOG, DELETE_BLOG, FETCH_BLOGS, NEW_BLOG } from './constants';
+import { UPDATE_BLOG, SINGLE_BLOG, DELETE_BLOG, FETCH_BLOGS, NEW_BLOG } from './constants';
 import axios from 'axios';
 
 // fetch all blogs
@@ -16,7 +16,7 @@ export const fetchBlogs = () => dispatch => {
 }
 
 export const blogInput = (blogData) => dispatch => {
-    axios.post(`/api/blogs`,{
+    axios.post(`/api/blogs`, {
         data: blogData,
         config: { headers: { 'Content-Type': 'multipart/form-data' } }
     }).then(myJson => {
@@ -30,13 +30,12 @@ export const blogInput = (blogData) => dispatch => {
 
 
 // update blog
-export const updateBlog = (id, blogData) => dispatch => {
-    axios.put(`/api/blogs/` + id,{
-        data: {
-            description: blogData
-        },
+export const updateBlog = (blogData) => dispatch => {
+    axios.put(`/api/blogs/${blogData._id}`, {
+        data: blogData,
         config: { headers: { 'Content-Type': 'multipart/form-data' } }
     }).then(myJson => {
+        console.log("resData: ", myJson.data)
         dispatch({
             type: UPDATE_BLOG,
             data: myJson.data
@@ -46,13 +45,13 @@ export const updateBlog = (id, blogData) => dispatch => {
 
 
 // delete blog
-export const deleteBlog = (id) => dispatch => {
+export const deleteBlog = (_id) => dispatch => {
     console.log('delete')
-    axios.delete(`/api/blogs/` + id)
+    axios.delete(`/api/blogs/` + _id)
         .then(myJson => {
             dispatch({
                 type: DELETE_BLOG,
-                data: myJson.data
+                _id
             });
         })
         .catch((error) => {
@@ -61,8 +60,8 @@ export const deleteBlog = (id) => dispatch => {
 }
 
 // Search single blog
-export const singleBlog = (id) => dispatch => {
-    axios.get(`/api/blogs/` + id)
+export const singleBlog = (_id) => dispatch => {
+    axios.get(`/api/blogs/` + _id)
         .then(myJson => {
             dispatch({
                 type: SINGLE_BLOG,

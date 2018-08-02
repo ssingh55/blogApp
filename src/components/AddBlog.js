@@ -16,18 +16,18 @@ class AddBlog extends React.Component {
     }
 
     componentDidMount() {
-        // console.log(this.props.match.params.id)
+        // console.log(this.props.match.params._id)
         // console.log(this.props.blog)
-        if (this.props.match.params.id !== undefined) {
+        if (this.props.match.params._id !== undefined) {
             console.log('inside')
             this.props.blog.map((item) => {
-                if (item._id == this.props.match.params.id) {
+                if (item._id == this.props.match.params._id) {
                     let nextBlog = {};
                     nextBlog.title = item.title;
                     nextBlog.description = item.description;
                     this.setState({
                         nextBlog,
-                        id: this.props.match.params.id
+                        _id: this.props.match.params._id
                     })
                 }
             })
@@ -59,14 +59,13 @@ class AddBlog extends React.Component {
     // }
 
     blogInput = (data) => {
-        console.log(data);
-        if (!this.state.id) {
-            console.log("not id")
+        // console.log(data);
+        if (!this.state._id) {
             data._id = Date.now();
             this.props.actions.blogInput(data);
         } else {
-            data._id = this.state.id
-            this.props.action.updateBlog(data._id, data);
+            data._id = this.state._id
+            this.props.actions.updateBlog(data);
         }
     }
 

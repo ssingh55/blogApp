@@ -37,10 +37,10 @@ class App extends Component {
           <Navigation />
           <Switch>
             <Route path="/" component={AddBlog} exact />
-            {/* <Route path="/allblogs/:id" component={AddBlog} exact /> */}
-            <Route path="/editblog/:id" component={AddBlog} />
-            {/* <Route path="/editblog/:id" component={EditBlog} /> */}
-            <Route path="/listblog/:id" component={BlogDetails} />
+            {/* <Route path="/allblogs/:_id" component={AddBlog} exact /> */}
+            <Route path="/editblog/:_id" component={AddBlog} />
+            {/* <Route path="/editblog/:_id" component={EditBlog} /> */}
+            <Route path="/listblog/:_id" component={BlogDetails} />
             <Route path="/listblog" component={ListBlog} />
             <Route path="/allblogs" component={Blog} />
             <Route component={Error} />

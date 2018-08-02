@@ -40,22 +40,21 @@ app.post('/api/blogs', (req, res) => {
 });
 
 //delete a data
-app.delete('/api/blogs/:id', (req, res) => {
-    blogModule.findOneAndRemove({ _id: req.params.id }).then(function (data) {
+app.delete('/api/blogs/:_id', (req, res) => {
+    blogModule.findOneAndRemove({ _id: req.params._id }).then(function (data) {
         res.send(data)
         // res.send({type:'DELETE'})
     })
 })
 
 //update a data
-app.put('/api/blogs/:id', async (req, res) => {
-    var bodyData = await req.body;
-    console.log(bodyData);
-    
-    blogModule.findOneAndUpdate({ _id: req.params.id }, {$set:{text: bodyData.text,description: bodyData.description}}).then(function (data) {
-        // blogModule.findOne({ key: req.params.id }).then(function (data) {
+app.put('/api/blogs/:_id', async (req, res) => {
+    var bodyData = await req.body.data;
+    blogModule.findByIdAndUpdate({ _id: req.params._id }, { $set: { title: bodyData.title, description: bodyData.description } }).then(function (data, err) {
+        blogModule.findOne({ _id: req.params._id }).then(function (data) {
+            console.log('hello', data)
             res.send(data)
-        // })
+        })
     })
 })
 
